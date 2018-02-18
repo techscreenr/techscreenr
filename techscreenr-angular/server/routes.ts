@@ -29,6 +29,11 @@ export default function setRoutes(app) {
   router.route('/user/:id').put(userCtrl.update);
   router.route('/user/:id').delete(userCtrl.delete);
 
+  // Twilio
+  router.route('/token').get(catCtrl.getToken);
+  router.route('/sendEmail').get(catCtrl.sendEmail);
+  router.route('/getVideo/:roomId').get(catCtrl.getTwilioVideo);
+
   // Apply the routes to our application with the prefix /api
   app.use('/api', router);
 

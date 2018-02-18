@@ -22,7 +22,23 @@ const routes: Routes = [
   { path: 'account', component: AccountComponent, canActivate: [AuthGuardLogin] },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuardAdmin] },
   { path: 'notfound', component: NotFoundComponent },
-  { path: '**', redirectTo: '/notfound' },
+  {
+    path: 'intro',
+    loadChildren: 'app/intro/intro.module#IntroModule'
+  },
+  {
+    path: 'start',
+    loadChildren: 'app/start/start.module#StartModule'
+  },
+  {
+    path: 'mockTest',
+    loadChildren: 'app/mock-test/mock-test.module#MockTestModule'
+  },
+  {
+    path: 'end',
+    loadChildren: 'app/end/end.module#EndModule'
+  },
+  // { path: '**', redirectTo: '/notfound' },
 ];
 
 @NgModule({
