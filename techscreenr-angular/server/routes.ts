@@ -1,38 +1,36 @@
+import * as core from 'express-serve-static-core';
 import * as express from 'express';
 
-import CatCtrl from './controllers/cat';
-import UserCtrl from './controllers/user';
-import Cat from './models/cat';
-import User from './models/user';
+import { ExamCtrl } from './controllers/exam/exam.controller';
+import { PerformanceReportsCtrl } from './controllers/performance-reporting/performance-reports.controller';
+import { TwilioCtrl } from './controllers/twilio/twilio.controller';
+import { UserCtrl } from './controllers/user/user.controller';
 
-export default function setRoutes(app) {
+/**
+ * @export
+ * @param {core.Express} app
+ */
+export default function setRoutes(app: core.Express) {
 
   const router = express.Router();
 
-  const catCtrl = new CatCtrl();
   const userCtrl = new UserCtrl();
-
-  // Cats
-  router.route('/cats').get(catCtrl.getAll);
-  router.route('/cats/count').get(catCtrl.count);
-  router.route('/cat').post(catCtrl.insert);
-  router.route('/cat/:id').get(catCtrl.get);
-  router.route('/cat/:id').put(catCtrl.update);
-  router.route('/cat/:id').delete(catCtrl.delete);
+  const examCtrl = new ExamCtrl();
+  const performanceReportsCtrl = new PerformanceReportsCtrl();
+  const twilioCtrl = new TwilioCtrl();
 
   // Users
-  router.route('/login').post(userCtrl.login);
-  router.route('/users').get(userCtrl.getAll);
-  router.route('/users/count').get(userCtrl.count);
-  router.route('/user').post(userCtrl.insert);
-  router.route('/user/:id').get(userCtrl.get);
-  router.route('/user/:id').put(userCtrl.update);
-  router.route('/user/:id').delete(userCtrl.delete);
+  router.route('/login/:username/:password').post(userCtrl.login);
+
+  // Exam
+  router.route('/examQuestions').post(examCtrl.getQuestions);
+
+  // Performance Reporting
+  router.route('/examResults').post(performanceReportsCtrl.postExamResults);
 
   // Twilio
-  router.route('/token').get(catCtrl.getToken);
-  router.route('/sendEmail').get(catCtrl.sendEmail);
-  router.route('/getVideo/:roomId').get(catCtrl.getTwilioVideo);
+  router.route('/token').get(twilioCtrl.getToken);
+  router.route('/getVideo/:roomId').get(twilioCtrl.getTwilioVideo);
 
   // Apply the routes to our application with the prefix /api
   app.use('/api', router);
