@@ -1,0 +1,13 @@
+<div>
+    Questions Work!!
+    <app-question
+        [activeQuestion]="activeQuestion$ | async"
+        (answer)="answerQuestion($event)"
+    >
+
+    </app-question>
+    <app-question-sidebar
+        [questions]="questions$ | async"
+        (setActiveQuestion)="setActiveQuestion($event)"
+    ></app-question-sidebar>
+</div>

@@ -1,0 +1,8 @@
+<div>
+    The nested question works!
+    <div *ngFor="let answer of activeQuestion.answers">
+        <button (click)="onAnswer(answer)" >
+            Answer!
+        </button>
+    </div>
+</div>
