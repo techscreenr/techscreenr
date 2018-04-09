@@ -11,4 +11,6 @@ export interface Question {
     answers: Answer[];
     title: string;
     visited: boolean;
+    answer: Answer | string;
+    isActive: boolean;
 }

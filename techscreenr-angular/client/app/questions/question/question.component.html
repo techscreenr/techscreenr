@@ -1,8 +1,28 @@
 <div>
-    The nested question works!
+    <h1>{{activeQuestion.title}}</h1>
+    <h2>{{activeQuestion.description}}</h2>
     <div *ngFor="let answer of activeQuestion.answers">
-        <button (click)="onAnswer(answer)" >
-            Answer!
-        </button>
+        <div *ngIf="setUpQuestion(type.Binary)">
+            <input
+                type="radio"
+                [checked]="answer.isSelected"
+                [name]="activeQuestion.id"
+                [id]="answer.id"
+                (change)="onUpdateAnswer(answer)"
+            >
+            <label [for]="answer.id">{{answer.description}}</label>
+        </div>
+        <div *ngIf="setUpQuestion(type.Checkbox)">
+            <p>{{answer.description}}</p>
+        </div>
+        <div *ngIf="setUpQuestion(type.FillInTheBlank)">
+            <p>{{answer.description}}</p>
+        </div>
+        <div *ngIf="setUpQuestion(type.Radio)">
+            <p>{{answer.description}}</p>
+        </div>
     </div>
+    <button (click)="onAnswer()" [disabled]="hasAnsweredQuestion">
+        Answer!
+    </button>
 </div>

@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { QuestionSidebarComponent } from './sidebar.component';
 
 @NgModule({
-    imports: [],
+    imports: [
+        CommonModule
+    ],
     declarations: [
         QuestionSidebarComponent
     ],

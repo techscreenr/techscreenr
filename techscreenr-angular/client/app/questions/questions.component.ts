@@ -8,7 +8,8 @@ import * as fromSelectors from '../store/selectors/questions.selectors';
 
 @Component({
     selector: 'app-questions',
-    templateUrl: './questions.component.html'
+    templateUrl: './questions.component.html',
+    styleUrls: ['./questions.component.scss']
 })
 export class QuestionsComponent implements OnInit {
     activeQuestion$: Observable<Question>;
@@ -26,7 +27,11 @@ export class QuestionsComponent implements OnInit {
     }
 
     answerQuestion(answer: Answer) {
-        console.log('answer!', answer);
+        this.store.dispatch(new fromActions.AnswerQuestion(answer));
+    }
+
+    updateAnswer(answer: Answer) {
+        this.store.dispatch(new fromActions.UpdateAnswer(answer));
     }
 
 }
