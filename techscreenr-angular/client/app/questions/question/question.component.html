@@ -1,6 +1,9 @@
 <div>
     <h1>{{activeQuestion.title}}</h1>
-    <h2>{{activeQuestion.description}}</h2>
+    <br>
+
+    <p>{{activeQuestion.description}}</p>
+
     <div *ngFor="let answer of activeQuestion.answers">
         <div *ngIf="setUpQuestion(type.Binary)">
             <input
@@ -22,7 +25,73 @@
             <p>{{answer.description}}</p>
         </div>
     </div>
+    <br>
     <button (click)="onAnswer()" [disabled]="hasAnsweredQuestion">
         Answer!
     </button>
+</div>
+
+<!-- Example Fill In the Blank -->
+<div>
+    <h1>Question 1</h1>
+    <br>
+
+    <p>Make the text in the title variable display in the component template.</p>
+    <p>(Fill in the blank)</p>
+    <br>
+    <h4>Angular Component</h4>
+    <div class="code">
+        <code>
+            @Component(<br>
+                selector: 'app-awesome-component',<br>
+                templateUrl: './awesome-component.component.html',<br>
+                styleUrls: ['./awesome-component.component.css']<br>
+            )<br>
+            export class MockTestComponent implements OnInit <br>
+                title = 'Working at Charter is Awesome!'
+        </code>
+    </div> 
+
+    <h4>Component HTML Template</h4>
+    <div class="code">
+        <code>
+                &lt;h6>||||||[Fill In The Blank]||||||&lt;/h6>
+        </code>
+    </div>
+
+    <label>Answer: </label>
+    <input type="text" maxlength="9"><!-- The Maxlength will change based on the question content -->
+</div>
+
+<br>
+<br>
+<br>
+<!-- Example select all that apply checkbox -->
+<div>
+    <h1>Question 1</h1>
+    <br>
+
+    <p>How can you declare a variable in JavaScript?</p>
+    <p>(Select all that apply)</p>
+    <br>
+    <div>
+        <input type="checkbox" id="answer1">
+        <label for="answer1">let</label>
+    </div>
+    <div>
+        <input type="checkbox" id="answer2">
+        <label for="answer2">const</label>
+    </div>
+    <div>
+        <input type="checkbox" id="answer3">
+        <label for="answer3">var</label>
+    </div>
+    <div>
+        <input type="checkbox" id="answer4">
+        <label for="answer4">string</label>
+    </div>
+    <div>
+        <input type="checkbox" id="answer5">
+        <label for="answer5">int</label>
+    </div>
 </div>
