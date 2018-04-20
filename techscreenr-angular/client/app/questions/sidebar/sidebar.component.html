@@ -1,0 +1,5 @@
+<div class="link-container">
+    <span *ngFor="let question of questions" >
+        <button [class]="getQuestionClass(question)" (click)="onSetActiveQuestion(question)">{{question.title}}</button>
+    </span>
+</div>

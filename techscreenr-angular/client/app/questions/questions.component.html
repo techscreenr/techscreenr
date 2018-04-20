@@ -1,0 +1,14 @@
+<div class="questions-container">
+    <app-question-sidebar
+        [questions]="questions$ | async"
+        [activeQuestion]="activeQuestion$ | async"
+        (setActiveQuestion)="setActiveQuestion($event)"
+    ></app-question-sidebar>
+    <span class="spacer"></span>
+    <app-question
+        [activeQuestion]="activeQuestion$ | async"
+        (answer)="answerQuestion($event)"
+        (updateAnswer)="updateAnswer($event)"
+    >
+    </app-question>
+</div>
